@@ -35,6 +35,8 @@ set backup       " Enable creation of backup file.
 set backupdir=~/.vim/backups  " Where backups will go.
 set directory=~/.vim/tmp      " Where temporary files will go.
 
+set noswapfile
+
 set history=1000 " Store lots of :cmdline history
 
 set backspace=indent,eol,start " Allow to navigate from start of line to end of previous line
@@ -85,7 +87,7 @@ set hidden " Allow dirty unsaved buffers
 """ Appearance
 
 set gfn=Anonymous\ Pro  " Font
-colorscheme molokai     " Color theme
+colorscheme molokai " Color theme
 
 """ Search
 
@@ -99,6 +101,14 @@ set hlsearch   " Hilight searches by default
 " Page Up & Page Down behaviour
 
 set nostartofline " Don't jump to fisrt line
+
+" Stop beeping!
+
+set visualbell
+
+" Show 3 line after and before cursor when scrolling
+
+set scrolloff=3
 
  "                                                                           "
 "*****************************************************************************"
@@ -121,6 +131,11 @@ endif
 "
 "*****************************************************************************"
  "                                                                           "
+
+"" Toggle between normal and insert mode
+
+nnoremap <D-x> i
+imap <D-x> <Esc>
 
 "" Previous - Next buffer
 
@@ -171,17 +186,44 @@ vnoremap ' :call Surround("'", "'")<CR>
 
 let i=1
 while i<=9
-    execute "nmap <D-".i."> ".i."gt"
-    execute "vmap <D-".i."> ".i."gt"
-    execute "imap <D-".i."> <ESC>".i."gt"
-    let i+=1
+  execute "nmap <D-".i."> ".i."gt"
+  execute "vmap <D-".i."> ".i."gt"
+  execute "imap <D-".i."> <ESC>".i."gt"
+  let i+=1
 endwhile
+
+"" Move block of text
+
+vmap <C-j> :m'>+<CR>gv=`<my`>mzgv`yo`z
+vmap <C-k> :m'<-2<CR>gv=`>my`<mzgv`yo`z
+
+"" Autocomplete
+
+imap <C-z> <C-x><C-o>
 
 "" Other staff
 
 " Sudo promt with :w!!
 
-cmap w!! %!sudo tee > /dev/null %
+cmap w!! sudo tee % &>/dev/null
+
+" vim-rails
+
+map <Leader>rc :Rcontroller<Space>
+map <Leader>rm :Rmodel<Space>
+map <Leader>rv :Rview<Space>
+map <Leader>rh :Rhelper<Space>
+
+map <Leader>rl :Rlayout<Space>
+
+map <Leader>rs :Rspec<Space>
+
+map <Leader>re :Renvironment<Space>
+
+map <Leader>ri :Rinitializer<Space>
+
+map <Leader>ra :A<CR>
+map <Leader>rr :R<CR>
 
  "                                                                           "
 "*****************************************************************************"
@@ -195,7 +237,7 @@ cmap w!! %!sudo tee > /dev/null %
 
 " Ctrl+F map to start search
 
-nnoremap <C-F> :FuzzyFinderTextMate<CR>
+"nnoremap <C-F> :FuzzyFinderTextMate<CR>
 
 """ NERDTree
 
@@ -220,13 +262,17 @@ set grepprg=ack\ -a
 
 " Ctrl+A to start Ack search
 
-"""nmap <C-A> :Ack<Space>
-imap <C-A> :Ack<Space>
+"nmap <C-A> :Ack<Space>
+"imap <C-A> :Ack<Space>
 
 """ NERDCommenter
 
 imap <D-/> <ESC>,cc
 nmap <D-/> ,cc
+
+""" RSense
+
+let g:rsenseHome = "$RSENSE_HOME"
 
  "                                                                           "
 "*****************************************************************************"
@@ -334,7 +380,7 @@ map т n
 map ь m
 map б ,
 map ю .
-map . /
+"map . /
 
 map Ё ~
 map Й Q
@@ -369,7 +415,7 @@ map Т N
 map Ь M
 map Б <
 map Ю >
-map , ?
+"map , ?
 
  "                                                                           "
 "*****************************************************************************"

@@ -11,11 +11,17 @@ snippet s
 snippet g
 	Given ${1}
 snippet t
-	Then I ${1}
-	${2}
+	Then  I ${1}
 snippet w
-	When I ${1}
-	${2}
+	When  I ${1}
 snippet a
-	And I ${1}
+	And   I ${1}
+snippet fi
+	fill in "${1:field}" with "${2:value}"
+	${3}
+snippet ch
+	choose "${1:value}" within "${2:field}"
+	${3}
+snippet ss
+	should see "${1}"
 	${2}
