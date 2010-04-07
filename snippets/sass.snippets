@@ -1,6 +1,8 @@
 #-----------------------------------------------------------
 # Position
 #-----------------------------------------------------------
+snippet po
+	position ${1}
 snippet poa
 	position: absolute
 snippet por
@@ -19,15 +21,15 @@ snippet h
 #-----------------------------------------------------------
 # Paddings
 #-----------------------------------------------------------
-snippet p
+snippet pa
 	padding: ${1}px
-snippet pt
+snippet pat
 	padding-top: ${1}px
-snippet pr
+snippet par
 	padding-right: ${1}px
-snippet pb
+snippet pab
 	padding-bottom: ${1}px
-snippet pl
+snippet pal
 	padding-left: ${1}px
 #-----------------------------------------------------------
 # Margins
@@ -47,12 +49,16 @@ snippet ml
 #-----------------------------------------------------------
 snippet fl
 	float: left
+snippet fr
+	float: right
+snippet clb
+	clear: both
 #-----------------------------------------------------------
 # Font
 #-----------------------------------------------------------
 snippet fs
 	font-size: ${1}px
-snippet c
+snippet co
 	color: ${1}
 snippet fw
 	font-weight: ${1:bold}
@@ -87,13 +93,21 @@ snippet tar
 #-----------------------------------------------------------
 # Borders
 #-----------------------------------------------------------
-snippet b
+snippet bo
 	border: ${1:1} ${2:solid} ${3:black}
-snippet bt
+snippet bot
 	border-top: ${1:1} ${2:solid} ${3:black}
-snippet br
+snippet bor
 	border-right: ${1:1} ${2:solid} ${3:black}
-snippet bb
+snippet bob
 	border-bottom: ${1:1} ${2:solid} ${3:black}
-snippet bl
+snippet bol
 	border-left: ${1:1} ${2:solid} ${3:black}
+#-----------------------------------------------------------
+# Borders
+#-----------------------------------------------------------
+snippet ba
+	background: ${1}
+snippet bai
+	backgroind-image: url('${1}')
+
