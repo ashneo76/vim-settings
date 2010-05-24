@@ -72,6 +72,7 @@ set grepprg=ack\ -a
 
 imap <D-/> <ESC>,cc
 nmap <D-/> ,cc
+vmap <D-/> ,cc
 
 """ RSense
 

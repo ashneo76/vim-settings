@@ -117,6 +117,8 @@ map <Leader>rm :Rmodel<Space>
 map <Leader>rv :Rview<Space>
 map <Leader>rh :Rhelper<Space>
 
+map <Leader>rj :Rjavascript<Space>
+
 map <Leader>rl :Rlayout<Space>
 
 map <Leader>rs :Rspec<Space>
@@ -127,3 +129,5 @@ map <Leader>ri :Rinitializer<Space>
 
 map <Leader>ra :A<CR>
 map <Leader>rr :R<CR>
+
+map <Leader>a :Ack<Space>

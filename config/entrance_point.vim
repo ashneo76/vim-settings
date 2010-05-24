@@ -33,7 +33,7 @@
  "                                                                           "
 
 " "Basics" config
-runtime! config/look_and_feel.vim
+runtime! config/basics.vim
 
 " "Look and Feel" config
 runtime! config/look_and_feel.vim
