@@ -1,6 +1,13 @@
 #!/usr/bin/env ruby
 
 git_bundles = [ 
+	# my fav's
+	#"git://github.com/sjl/gundo.vim.git",
+  #"git://github.com/dsummersl/lookupfile-grep.git",
+  #"git://github.com/dsummersl/vimplugin-macromatches.git",
+  #"git://github.com/scrooloose/nerdcommenter.git",
+  #"git://github.com/motemen/git-vim",
+  #"git://github.com/sukima/xmledit",
 ]
 
 # Takes:
@@ -13,6 +20,16 @@ git_bundles = [
 #   lambda: in case you need to do some kinda cleanup, you can supply a lambda function. The directory
 #           you are currently in is the bundle/<name> (that you provided here)
 vim_org_scripts = [
+	# To install vimball's you'll need these:
+  #["cecutil-1066",        "7618"],
+  #["vimball-1502",        "11981"],
+	
+	# My fav's
+  #["largefile-1506",        "9277"],
+  #["genutils-197",        "11399"],
+  #["surround-1697",        "12566"],
+  #["matchit-39",        "8196"],
+  #["lookupfile-1581",        "7671"],
 ]
 
 require 'fileutils'
