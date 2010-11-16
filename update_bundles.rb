@@ -1,23 +1,54 @@
 #!/usr/bin/env ruby
 
+# from https://gist.github.com/593551
+
+vim_command = '/usr/bin/vim'
+# Git Plugins
+# Each plugin can be configured thusly:
+#
+# URL: git conforming URL to do a 'git clone' of the plugin.
+# keep as repo (optional): you can supply 'true' (or false :] ) to instruct
+#                          this script to leave the .git folder in place (in 
+#                          case you wanna work on it) 
 git_bundles = [ 
-	# my fav's
-	#"git://github.com/sjl/gundo.vim.git",
-  #"git://github.com/dsummersl/lookupfile-grep.git",
-  #"git://github.com/dsummersl/vimplugin-macromatches.git",
-  #"git://github.com/scrooloose/nerdcommenter.git",
-  #"git://github.com/motemen/git-vim",
-  #"git://github.com/sukima/xmledit",
+	["git://github.com/sjl/gundo.vim.git"],
+  ["git://github.com/dsummersl/lookupfile-grep.git", true],
+  ["git://github.com/dsummersl/vimplugin-macromatches.git", true],
+  ["git://github.com/dsummersl/wikia-csv.git", true],
+  ["git://github.com/dsummersl/vimunit.git", true],
+  ["git://github.com/scrooloose/nerdcommenter.git"],
+  ["git://github.com/motemen/git-vim"],
+  ["git://github.com/sukima/xmledit"],
+  ["git://github.com/vim-scripts/taglist.vim"],
+
+#  "git://github.com/msanders/snipmate.vim.git",
+#  "git://github.com/timcharper/textile.vim.git",
+#  "git://github.com/tpope/vim-cucumber.git",
+#  "git://github.com/tpope/vim-fugitive.git",
+#  "git://github.com/tpope/vim-git.git",
+#  "git://github.com/tpope/vim-haml.git",
+#  "git://github.com/tpope/vim-markdown.git",
+#  "git://github.com/tpope/vim-rails.git",
+#  "git://github.com/tpope/vim-repeat.git",
+#  "git://github.com/tpope/vim-surround.git",
+#  "git://github.com/tpope/vim-vividchalk.git",
+#  "git://github.com/tsaleh/vim-align.git",
+#  "git://github.com/tsaleh/vim-shoulda.git",
+#  "git://github.com/tsaleh/vim-supertab.git",
+#  "git://github.com/tsaleh/vim-tcomment.git",
+#  "git://github.com/vim-ruby/vim-ruby.git",
 ]
 
-# Takes:
+# Vim.org Plugins:
+# Each plugin takes several values in the array:
+#
 #   name: whatever you want the directory in the bundle to be called.
 #   version: corresponds to the # (URL?src_id) you see for the specific version you wanna download. For instance:
 #      For the script: http://www.vim.org/scripts/script.php?script_id=30
 #      The latest version is 1.13, and the src_id of the link is
 #      http://www.vim.org/scripts/download_script.php?src_id=9196
 #      so 9196 is what I'd put here.
-#   lambda: in case you need to do some kinda cleanup, you can supply a lambda function. The directory
+#   lambda (optional): in case you need to do some kinda cleanup, you can supply a lambda function. The directory
 #           you are currently in is the bundle/<name> (that you provided here)
 vim_org_scripts = [
 	# To install vimball's you'll need these:
@@ -46,7 +77,8 @@ if trash
   Dir["*"].each {|d| FileUtils.rm_rf d }
 end
 
-git_bundles.each do |url|
+git_bundles.each do |script|
+	url = script[0]
   dir = url.split('/').last.sub(/\.git$/, '')
   if !trash && File.exists?(dir)
     puts "Skipping #{dir}"
@@ -54,7 +86,10 @@ git_bundles.each do |url|
   end
   puts "  Unpacking #{url} into #{dir}"
   `git clone #{url} #{dir}`
+	if script.size < 2 or not script[1]
+		puts "  Removing .git folder"
   FileUtils.rm_rf(File.join(dir, ".git"))
+	end
 end
 
 vim_org_scripts.each do |script|
