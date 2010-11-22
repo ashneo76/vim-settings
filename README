@@ -1,4 +1,8 @@
 update_bundles.rb - A ruby script to keep your VIM plugins up to date.
 
-What it does: 
-- installs all your VIM plugins for you, for pathogen.
+What it is: Installs all your VIM plugins for you, for pathogen.
+
+Usage:
+
+cd ~/.vim
+ruby update_bundles.rb

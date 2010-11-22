@@ -3,23 +3,57 @@
 # from https://gist.github.com/593551
 
 vim_command = '/usr/bin/vim'
+git_command = 'git'
+hg_command = '/usr/local/Cellar/python/2.7/bin/hg'
+
 # Git Plugins
 # Each plugin can be configured thusly:
 #
-# URL: git conforming URL to do a 'git clone' of the plugin.
-# keep as repo (optional): you can supply 'true' (or false :] ) to instruct
-#                          this script to leave the .git folder in place (in 
-#                          case you wanna work on it) 
-git_bundles = [ 
+# URL: The plugin location. This supports three types:
+#  - git       : a git plugin. Mostly on github.com?
+#                Example: ["git://github.com/sjl/gundo.vim.git"],
+#                ---
+#                You can supply 'true' to instruct at the end of the array
+#                to leave the .git folder in place (to pull/commit things) 
+#  - mercurial : an hg plugin. Probably bitbucket.org?
+#                Example: ["hg://bitbucket.org/ns9tks/vim-fuzzyfinder"],
+#  - vim       : a vim.org hosted plugin.
+#                Example: ["vim://align-294",        "10110"],
+#                ---
+#                The first string is the name of the plugin.
+#                The second string corresponds to the # (URL?src_id) you see 
+#                for the specific version you wanna download. For instance:
+#
+#                For the script: http://www.vim.org/scripts/script.php?script_id=30
+#                The latest version is 1.13, and the src_id of the link is
+#                http://www.vim.org/scripts/download_script.php?src_id=9196
+#                so 9196 is what I'd put here.
+#
+#   lambda (optional): you can supply a lambda function at the end of any array
+#   to do any post cleanup/install action.. The directory you are currently in
+#   is the bundle/<name> (that you provided here).
+#
+bundles = [ 
 	["git://github.com/sjl/gundo.vim.git"],
+  ["git://github.com/scrooloose/nerdcommenter.git"],
+  #["git://github.com/motemen/git-vim"],
+  ["git://github.com/sukima/xmledit"],
+  ["git://github.com/vim-scripts/taglist.vim"],
   ["git://github.com/dsummersl/lookupfile-grep.git", true],
   ["git://github.com/dsummersl/vimplugin-macromatches.git", true],
   ["git://github.com/dsummersl/wikia-csv.git", true],
   ["git://github.com/dsummersl/vimunit.git", true],
-  ["git://github.com/scrooloose/nerdcommenter.git"],
-  ["git://github.com/motemen/git-vim"],
-  ["git://github.com/sukima/xmledit"],
-  ["git://github.com/vim-scripts/taglist.vim"],
+  ["git://github.com/dsummersl/vim-fugitive",true],
+  ["git://github.com/dsummersl/fuzzyfinder_textmate",true],
+  ["hg://bitbucket.org/ns9tks/vim-fuzzyfinder"],
+  ["vim://cecutil-1066",        "7618"],
+  ["vim://vimball-1502",        "11981"],
+  ["vim://align-294",        "10110"],
+  ["vim://largefile-1506",        "9277"],
+  ["vim://genutils-197",        "11399"],
+  ["vim://surround-1697",        "12566"],
+  ["vim://matchit-39",        "8196"],
+  ["vim://lookupfile-1581",        "7671"],
 
 #  "git://github.com/msanders/snipmate.vim.git",
 #  "git://github.com/timcharper/textile.vim.git",
@@ -39,29 +73,9 @@ git_bundles = [
 #  "git://github.com/vim-ruby/vim-ruby.git",
 ]
 
-# Vim.org Plugins:
-# Each plugin takes several values in the array:
-#
-#   name: whatever you want the directory in the bundle to be called.
-#   version: corresponds to the # (URL?src_id) you see for the specific version you wanna download. For instance:
-#      For the script: http://www.vim.org/scripts/script.php?script_id=30
-#      The latest version is 1.13, and the src_id of the link is
-#      http://www.vim.org/scripts/download_script.php?src_id=9196
-#      so 9196 is what I'd put here.
-#   lambda (optional): in case you need to do some kinda cleanup, you can supply a lambda function. The directory
-#           you are currently in is the bundle/<name> (that you provided here)
-vim_org_scripts = [
-	# To install vimball's you'll need these:
-  #["cecutil-1066",        "7618"],
-  #["vimball-1502",        "11981"],
-	
-	# My fav's
-  #["largefile-1506",        "9277"],
-  #["genutils-197",        "11399"],
-  #["surround-1697",        "12566"],
-  #["matchit-39",        "8196"],
-  #["lookupfile-1581",        "7671"],
-]
+#["pythoncomplete",        ""],
+#["rails-1567",        ""],
+#["showmarks",        ""],
 
 require 'fileutils'
 require 'open-uri'
@@ -72,31 +86,49 @@ FileUtils.cd(bundles_dir)
 
 trash = ARGV.include?('--trash')
 
-if trash
-  puts "Trashing everything (lookout!)"
-  Dir["*"].each {|d| FileUtils.rm_rf d }
-end
-
-git_bundles.each do |script|
+bundles.each do |script|
 	url = script[0]
+	puts url
+	if (url.start_with? 'git')
   dir = url.split('/').last.sub(/\.git$/, '')
-  if !trash && File.exists?(dir)
-    puts "Skipping #{dir}"
+		if File.exists?(dir)
+			if !trash
+				puts "  Skipping"
+			else
+				FileUtils.rm_rf dir
+			end
     next
   end
   puts "  Unpacking #{url} into #{dir}"
-  `git clone #{url} #{dir}`
+		`#{git_command} clone #{url} #{dir}`
 	if script.size < 2 or not script[1]
 		puts "  Removing .git folder"
   FileUtils.rm_rf(File.join(dir, ".git"))
 	end
-end
-
-vim_org_scripts.each do |script|
-	name = script[0]
+	end
+	if (url.start_with? 'hg')
+		url = script[0].gsub(/^hg:/,"http:")
+		dir = url.split('/').last
+		if File.exists?(dir)
+			if !trash
+				puts "  Skipping"
+			else
+				FileUtils.rm_rf dir
+			end
+			next
+		end
+		puts "  Unpacking #{url} into #{dir}"
+		`#{hg_command} clone #{url} #{dir}`
+		if script.size < 2 or not script[1]
+			puts "  Removing .hg folder"
+			FileUtils.rm_rf(File.join(dir, ".hg"))
+		end
+	end
+	if (url.start_with? 'vim')
+		name = script[0].gsub(/^vim:\/\//,"")
 	script_id = script[1]
   if !trash && File.exists?(name)
-    puts "Skipping #{name}"
+			puts "  Skipping"
     next
   end
   puts "Setup & Download #{name}"
@@ -137,14 +169,17 @@ vim_org_scripts.each do |script|
 		puts "  Gunzip"
     %x(gunzip #{local_file})
   end
-	if script.size == 3
-		puts "  Custom setup"
-		script[2].call
-	end
 	if local_file.end_with? 'vim'
 		FileUtils.cd("..")
 	end
 	FileUtils.cd("..")
+	end
+
+	# TODO do any custom code.
+	if script.size == 3
+		puts "  Custom setup"
+		script[2].call
+	end
 end
 
 # vim:ft=ruby:
