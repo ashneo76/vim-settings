@@ -1,8 +1,8 @@
-update_bundles.rb - A ruby script to keep your VIM plugins up to date.
+vim-settings by ashish
 
-What it is: Installs all your VIM plugins for you, for pathogen.
+this is my personal vim setup pulled from different places on the web
 
-Usage:
-
-cd ~/.vim
-ruby update_bundles.rb
+1. checkout the repository
+2. cp to .vim
+3. cp vimrc -> ~/.vimrc
+4. cp gvimrc -> ~/.gvimrc
