@@ -10,7 +10,6 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 set hidden
-set nowrap
 set backspace=indent,eol,start
 set tabstop=4
 set autoindent
@@ -29,4 +28,6 @@ set wildignore=*.swp,*.bak,*.pyc,*.class
 set title
 set noerrorbells
 
+let g:molokai_original = 1
+colorscheme molokai
 
