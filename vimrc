@@ -20,7 +20,6 @@ set showmatch
 set ignorecase
 set smartcase
 set smarttab
-set hlsearch
 set incsearch
 set history=1000
 set undolevels=1000
@@ -29,5 +28,6 @@ set title
 set noerrorbells
 
 let g:molokai_original = 1
-colorscheme molokai
+let g:impact_transbg = 1
+colorscheme impact
 
