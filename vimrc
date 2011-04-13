@@ -24,10 +24,14 @@ set incsearch
 set history=1000
 set undolevels=1000
 set wildignore=*.swp,*.bak,*.pyc,*.class
-set title
 set noerrorbells
+set notitle
 
 let g:molokai_original = 1
 let g:impact_transbg = 1
 colorscheme impact
 
+"set rtp+=~/.vim/vundle/
+"call vundle#rc()
+
+"Bundle 'vim-scripts/AutoClose'
