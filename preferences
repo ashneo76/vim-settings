@@ -1,0 +1,15 @@
+Package: hildon-theme-marina
+Pin: release l=Extras
+Pin-Priority: 1001
+
+Package: *
+Pin: release a=stable
+Pin-Priority: 900
+
+Package: *
+Pin: release a=testing
+Pin-Priority: 600
+
+Package: *
+Pin: release a=devel
+Pin-Priority: 300
