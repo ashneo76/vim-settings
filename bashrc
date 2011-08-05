@@ -33,7 +33,7 @@ alias du='du -h'
 alias ifconfig='sudo ifconfig'
 alias ping='sudo ping'
 
-cd ~/MyDocs
+cd /home/user/MyDocs
 export PS1='\[\033[0m\][\[\033[33m\]${SHLVL}\[\033[0m\]|\[\033[34m\]\u\[\033[0m\]@\[\033[32m\]\h\[\033[0m\]|\[\033[36m\]\w\[\033[0m\]]\[\033[0m\]'
 
 #2 line

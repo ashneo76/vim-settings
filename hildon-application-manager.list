@@ -1,3 +1,7 @@
 deb https://downloads.maemo.nokia.com/fremantle/ssu/apps/ ./ 
 deb https://downloads.maemo.nokia.com/fremantle/ssu/mr0 ./ 
 deb https://downloads.maemo.nokia.com/fremantle1.2/ovi/ ./ 
+deb https://hiro.nokia.com/repository/project/enterprise-tablet/ fremantle nokia-open nokia-closed modified ossw 
+deb http://moff.mozilla.com/latest/maemo/multi/ fremantle release
+deb http://repository.maemo.org/community-testing/ fremantle free non-free
+deb https://ashish6f65e4cbf0:feca24a8b3652ce7@host-143.nrln.net/repo/ fremantle free
