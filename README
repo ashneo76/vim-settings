@@ -1,8 +1,66 @@
-vim-settings by ashish
+vim and n900 settings
+author: ashish
 
-this is my personal vim setup pulled from different places on the web
+How to use:
+00. ln -s profile ~/.profile
+01. ln -s bashrc to ~/.bashrc
+02. ln -s vimrc to ~/.vimrc
+03. ln -s vim-settings to ~/.vim
+04. cp preferences /etc/apt/preferences (if you need to)
+05. cp difmplay ~
+05. ln -s difmplayrc ~/.difmplayrc
+06. cp transitions.ini /usr/share/applications/hildon-desktop/transitions.ini
+07. ln -s gvimrc ~/.gvimrc
+08. cp hildon-application-manager.list /etc/apt/sources.list.d/hildon-application-manager.list
+09. cp sources.list /etc/apt/sources.list
+10. cp mce.ini /etc/mce/mce.ini
+11. cp systemui.xml /etc/systemui/systemui.xml
+12. cp rx-51.mod /usr/share/X11/xkb/symbols/nokia_vndr/rx-51
 
-1. checkout the repository
-2. cp to .vim
-3. cp vimrc -> ~/.vimrc
-4. cp gvimrc -> ~/.gvimrc
+Notes:
+01. rx-51 is for BACKUP restoration purposes and is the default on US N900
+02. rx-51.mod customizations, is helpful for quickly getting around the linux terminal, python programming and daily texting(ofcourse):
+    Fn+:
+      Up = Home
+      Down = End
+      Left = Escape
+      Right = Tab 
+      
+      Row 3 (modifitcations):
+        z = ~
+        c = |
+    
+    Fn+Shift:
+      Row 1:        
+        1 = ¥
+        2 = ²
+        3 = ³
+        4 = ¼
+        5 = ½
+        6 = ¾
+        7 = µ
+        8 = ×
+        9 = ÷
+        0 = »
+        
+      Row 2:
+        a = °
+        s = ±
+        d = ^
+        f = ·
+        g = ¯
+        h = ¢
+        j = [
+        k = ]
+        l = ¡
+        : = ¿
+        
+      Row 3:
+        z = {
+        x = }
+        c = ¦
+        v = <
+        b = >
+        n = %
+        m = `
+        
