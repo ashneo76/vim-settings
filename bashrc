@@ -36,7 +36,13 @@ alias ping='sudo ping'
 cd /home/user/MyDocs
 export PS1='\[\033[0m\][\[\033[33m\]${SHLVL}\[\033[0m\]|\[\033[34m\]\u\[\033[0m\]@\[\033[32m\]\h\[\033[0m\]|\[\033[36m\]\w\[\033[0m\]]\[\033[0m\]'
 
-#2 line
+# 2 line
 export PS1="[\[\033[32m\]\w]\[\033[0m\]\n\[\033[1;36m\]\u\[\033[1;33m\]-> \[\033[0m\]"
-#smiley
 
+if [ "$PS1" ] ; then
+mkdir -p -m 0700 /dev/cgroup/cpu/user/$$ > /dev/null 2>&1
+echo $$ > /dev/cgroup/cpu/user/$$/tasks
+echo "1" > /dev/cgroup/cpu/user/$$/notify_on_release
+fi
+
+#source /etc/bash_completion

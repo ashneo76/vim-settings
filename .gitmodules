@@ -1,3 +1,54 @@
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
+[submodule "bundle/delmitmate"]
+	path = bundle/delmitmate
+	url = git://github.com/Raimondi/delimitMate.git
+[submodule "bundle/closetag"]
+	path = bundle/closetag
+	url = git://github.com/docunext/closetag.vim.git
+[submodule "bundle/pyflakes"]
+	path = bundle/pyflakes
+	url = git://github.com/kevinw/pyflakes-vim.git
+[submodule "bundle/nerdcommenter"]
+	path = bundle/nerdcommenter
+	url = git://github.com/scrooloose/nerdcommenter.git
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = git://github.com/vim-scripts/SuperTab.git
+[submodule "bundle/solarized"]
+	path = bundle/solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/csaprox"]
+	path = bundle/csaprox
+	url = git://github.com/godlygeek/csapprox.git
+[submodule "bundle/css_color"]
+	path = bundle/css_color
+	url = git://github.com/vim-scripts/css_color.vim.git
+[submodule "bundle/better_css"]
+	path = bundle/better_css
+	url = git://github.com/vim-scripts/Better-CSS-Syntax-for-Vim.git
+[submodule "bundle/snipmate"]
+	path = bundle/snipmate
+	url = git://github.com/msanders/snipmate.vim.git
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = git://github.com/hallison/vim-markdown.git
+[submodule "bundle/vim-json"]
+	path = bundle/vim-json
+	url = git://github.com/leshill/vim-json.git
+[submodule "bundle/surround"]
+	path = bundle/surround
+	url = git://github.com/spf13/vim-surround.git
+[submodule "bundle/macromatches"]
+	path = bundle/macromatches
+	url = git://github.com/dsummersl/vimplugin-macromatches.git
+[submodule "bundle/commandt"]
+	path = bundle/commandt
+	url = git://github.com/wincent/Command-T.git
+[submodule "bundle/snipmate-snippets"]
+	path = bundle/snipmate-snippets
+	url = git://github.com/spf13/snipmate-snippets.git
+[submodule "bundle/nerdtree"]
+	path = bundle/nerdtree
+	url = git://github.com/spf13/nerdtree.git
