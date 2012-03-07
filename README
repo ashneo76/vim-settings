@@ -9,7 +9,7 @@ How to use:
 04. cp preferences /etc/apt/preferences (if you need to)
 05. cp difmplay ~
 05. ln -s difmplayrc ~/.difmplayrc
-06. cp transitions.ini /usr/share/applications/hildon-desktop/transitions.ini
+06. cp transitions.ini /usr/share/hildon-desktop/transitions.ini
 07. ln -s gvimrc ~/.gvimrc
 08. cp hildon-application-manager.list /etc/apt/sources.list.d/hildon-application-manager.list
 09. cp sources.list /etc/apt/sources.list
