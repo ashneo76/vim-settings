@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 import os
 import time
+import re
 import gobject, dbus
 from dbus.mainloop.glib import DBusGMainLoop
-
-calllogFile = '/home/user/MyDocs/calllogs.txt'
+ 
 blocklistFile = '/home/user/MyDocs/BlockedCallers.txt'
+calllogFile = '/home/user/MyDocs/CallLog.txt'
 blocklist = []
 last_mtime = 0
 
@@ -30,21 +31,29 @@ def handle_call(obj_path, callernumber):
     recent_mtime = os.stat(blocklistFile).st_mtime
     timestamp = current_timestamp()
 
-    logFile = open(calllogFile,'a+')
-    logFile.write(timestamp+ ': ' + callernumber + '\n')
-    logFile.close()
+    # Log all calls
+    clFile = open(calllogFile,'a+')
+    clFile.write('\n' + current_timestamp() + ':' + callernumber)
+    clFile.flush()
+    clFile.close()
 
     if recent_mtime > last_mtime:
         last_mtime = recent_mtime
         print "[%s] Re-loading blocker list from file..." % timestamp
         load_blocklist()
 
-    if callernumber in blocklist:
-        print '[%s] Blocking call from %s' % (timestamp, callernumber)
-        bus = dbus.SystemBus()
-        callobject = bus.get_object('com.nokia.csd.Call', '/com/nokia/csd/call/1')
-        smsiface = dbus.Interface(callobject, 'com.nokia.csd.Call.Instance')
-        smsiface.Release()
+    print current_timestamp() + "Checking whether to block " + callernumber
+    #if callernumber in blocklist:
+    for numberentry in blocklist:
+        print "Compiling pattern for " + numberentry
+        p = re.compile(numberentry)
+        if p.match(callernumber) != None:
+            print '[%s] Blocking call from %s' % (timestamp, callernumber)
+            bus = dbus.SystemBus()
+            callobject = bus.get_object('com.nokia.csd.Call', '/com/nokia/csd/call/1')
+            smsiface = dbus.Interface(callobject, 'com.nokia.csd.Call.Instance')
+            smsiface.Release()
+            break
 
 def wait_csd():
 
