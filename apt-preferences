@@ -1,0 +1,15 @@
+Package: nmap
+Pin: version 5.50*
+Pin-Priority: 1500
+
+Package: *
+Pin: release a=stable
+Pin-Priority: 900
+
+Package: *
+Pin: release a=testing
+Pin-Priority: 600
+
+Package: *
+Pin: release a=devel
+Pin-Priority: 300
