@@ -1,3 +1,4 @@
 CHANNEL=trance
-PLAYER='mplayer -cache 512 -cache-min 64'
+#PLAYER='mplayer -cache 512 -cache-min 64'
 PREMIUM=b498db2d5366b7b
+CHANNEL=trance
